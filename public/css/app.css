@@ -1,1 +1,2 @@
 
+*{margin:0;padding:0;box-sizing:border-box}a{text-decoration:none;padding:3px}.container{padding:0 calc(50% - 600px);background-color:#efefef;min-height:100vh}.header{display:flex;justify-content:space-between;padding:20px 0}
