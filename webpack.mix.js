@@ -16,6 +16,7 @@ mix.js('resources/js/app.js', 'public/js/app.js')
         version: 2,
         extractStyles: true
     })
+    .sass('resources/scss/app.scss', 'public/css')
     .postCss('resources/css/app.css', 'public/css', [
         //
     ]);
