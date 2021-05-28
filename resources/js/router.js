@@ -1,5 +1,5 @@
 import Home from "./Components/Home";
-import Hello from "./Components/Form";
+import Form from "./Components/Form";
 
 export default [
     {
@@ -10,6 +10,6 @@ export default [
     {
         path: '/form',
         name: 'form',
-        component: Hello,
+        component: Form
     },
 ]

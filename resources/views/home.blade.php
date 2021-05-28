@@ -5,6 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+        <script src="https://kit.fontawesome.com/8fb0963895.js" crossorigin="anonymous"></script>
         <title>{{ env('APP_NAME') }}</title>
     </head>
     <body>
