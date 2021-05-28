@@ -83,6 +83,11 @@ li {
   color: dimgrey;
 }
 
+.router-link-active {
+  border-bottom: 2px solid dimgrey;
+  color: dimgrey;
+}
+
 .blocks {
   display: -ms-grid;
   display: grid;

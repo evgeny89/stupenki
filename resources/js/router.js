@@ -1,5 +1,9 @@
 import Home from "./Components/Home";
 import Form from "./Components/Form";
+import About from "./Components/About";
+import Search from "./Components/Search";
+import Register from "./Components/Register";
+import Auth from "./Components/Auth";
 
 export default [
     {
@@ -11,5 +15,25 @@ export default [
         path: '/form',
         name: 'form',
         component: Form
+    },
+    {
+        path: '/about',
+        name: 'about',
+        component: About
+    },
+    {
+        path: '/search',
+        name: 'search',
+        component: Search
+    },
+    {
+        path: '/register',
+        name: 'register',
+        component: Register
+    },
+    {
+        path: '/auth',
+        name: 'auth',
+        component: Auth
     },
 ]
