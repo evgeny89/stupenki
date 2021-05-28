@@ -3,9 +3,26 @@
             <div class="wrapper menu">
                 <div></div>
                 <nav class="nav">
-                    <a class="menu_nav" href="#">О Проекте</a>
-                    <a class="menu_nav" href="#">Поиск</a>
-                    <a class="menu_nav" href="#">Регистрация</a>
+                    <router-link
+                        :to="{ name: 'home' }"
+                        class="menu_nav"
+                        exact
+                    >Главная</router-link>
+
+                    <router-link
+                        :to="{ name: 'about' }"
+                        class="menu_nav"
+                    >О проекте</router-link>
+
+                    <router-link
+                        :to="{ name: 'search' }"
+                        class="menu_nav"
+                    >Поиск</router-link>
+
+                    <router-link
+                        :to="{ name: 'register' }"
+                        class="menu_nav"
+                    >Регистрация</router-link>
                 </nav>
                 <a href="#" class="btn-login">Вход</a>
             </div>
