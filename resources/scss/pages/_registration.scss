@@ -1,0 +1,32 @@
+.input {
+    @extend %input;
+}
+
+.label {
+    @extend %label;
+}
+
+.btn {
+    @extend %button;
+    margin: 0 auto;
+}
+
+form {
+    grid-column-start: 2;
+    max-width: 300px;
+    margin-top: 60px;
+}
+
+.fail-hint {
+    @extend %hint;
+}
+
+.fail-validation {
+    border: 2px solid $error;
+}
+
+.flex-between {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

@@ -24,7 +24,7 @@
                         class="menu_nav"
                     >Регистрация</router-link>
                 </nav>
-                <a href="#" class="btn-login">Вход</a>
+                <button class="btn-login">Вход</button>
             </div>
         </header>
 </template>
