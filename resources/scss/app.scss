@@ -1,21 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@700&display=swap');
-$color-social: #ec8b74;
-$text-grey: dimgrey;
-$color-violet: #be9de3;
-$color-white: #cfe7dc;
-$color-orange: #ff4e00;
+@import "variable";
+@import "extendalbe";
 
-%button {
-  border: 1px solid lightgray;
-  padding: 8px;
-  font-size: 13px;
-  font-weight: 400;
-  color: $color-white;
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-}
+@import "pages/registration";
 
 body {
   font-family: 'Montserrat', sans-serif;
@@ -39,15 +27,15 @@ li {
 // Кнопки
 
 .btn-login {
-  background-color: $color-orange;
-  color: $text-grey;
+  background-color: $moon-chess;
+  color: $background-dark;
   font-size: 17px;
   font-weight: 700;
   letter-spacing: 1px;
   padding: 13px 19px;
   border: none;
   border-radius: 5px;
-  transition: background-color 1s;
+  transition: background-color .5s;
   font-family: 'Montserrat Alternates', sans-serif;
 }
 .btn-login:hover {
@@ -170,7 +158,7 @@ li {
   border: 1px solid $color-social;
 }
 .social_f:active {
-  background-color: #eeeeee;
-  border: 1px solid #eeeeee;
-  color: $color-social;
+    background-color: #eeeeee;
+    border: 1px solid #eeeeee;
+    color: $color-social;
 }
