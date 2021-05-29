@@ -1,0 +1,37 @@
+%button {
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    color: $background-dark;
+    background-color: $moon-chess;
+    display: block;
+    margin-bottom: 10px;
+}
+
+%input {
+    padding: 10px;
+    border-radius: 8px;
+    width: 100%;
+    display: block;
+    background-color: $background;
+    color: $moon-chess;
+    font-size: 16px;
+    font-weight: 700;
+    outline: none;
+    margin-bottom: 20px;
+}
+
+%label {
+    font-weight: 600;
+    color: $color-white;
+    margin-bottom: 7px;
+    display: block;
+}
+
+%hint {
+    font-size: 10px;
+    color: $moon-chess;
+}
