@@ -24,13 +24,43 @@
                         class="menu_nav"
                     >Регистрация</router-link>
                 </nav>
-                <button class="btn-login">Вход</button>
+                <button
+                    class="btn-login"
+                    @click="toggleIsOpen"
+                >Вход</button>
             </div>
+            <AuthModal v-if="isOpen"  />
         </header>
 </template>
 
 <script>
+import AuthModal from './AuthModal.vue'
+
 export default {
-    name: "Header"
+    name: "Header",
+    data () {
+        return {
+            isOpen: false,
+        }
+    },
+
+    computed: {
+        path: function () {
+            return this.$route.path
+        }
+    },
+
+    methods: {
+        toggleIsOpen: function () {
+            if(this.path === "/register") {
+                return
+            }
+            return this.isOpen = !this.isOpen
+        }
+    },
+
+    components: {
+        AuthModal
+    }
 }
 </script>

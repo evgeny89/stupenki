@@ -4,6 +4,7 @@
 @import "extendalbe";
 
 @import "pages/registration";
+@import "components/auth-modal";
 
 body {
   font-family: 'Montserrat', sans-serif;
@@ -37,6 +38,7 @@ li {
   border-radius: 5px;
   transition: background-color .5s;
   font-family: 'Montserrat Alternates', sans-serif;
+  cursor: pointer;
 }
 .btn-login:hover {
   background-color: $color-white;
