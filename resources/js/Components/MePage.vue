@@ -4,10 +4,10 @@
             <p class="me-title">личная информация:</p>
             <div class="me-description">
                 <p>
-                    name: <span class="me-text">{{ user.name }}</span>
+                    name: <span class="me-text">{{ name }}</span>
                 </p>
                 <p>
-                    e-mail: <span class="me-text">{{ user.email }}</span>
+                    e-mail: <span class="me-text">{{ email }}</span>
                 </p>
             </div>
         </aside>
@@ -25,6 +25,14 @@ export default {
     data() {
         return {
             user: null,
+        }
+    },
+    computed: {
+        name: function () {
+            return this.user?.name ?? '...';
+        },
+        email: function () {
+            return this.user?.email ?? '...';
         }
     },
     methods: {
