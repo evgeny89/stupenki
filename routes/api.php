@@ -1,7 +1,9 @@
 <?php
 
+
+use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\StupenkaController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Api\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,10 +20,19 @@ use Illuminate\Support\Facades\Route;
 //Route::middleware('auth:api')->get('/user', function (Request $request) {
 //    return $request->user();
 //});
-Route::apiResource('/user', \App\Models\User::class);
-Route::apiResource('/stupenka', StupenkaController::class);
-Route::get('/stupenki', function () {
-    return new \App\Http\Resources\StupenkaCollection(\App\Models\Stupenka::all());
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
+
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::get('/me', function (Illuminate\Http\Request $request) {
+        return auth()->user();
+    });
+    Route::get('/user/{user}', [UserController::class, 'getUser']);
+
+    Route::post('/logout', [AuthController::class, 'logout']);
+    Route::post('/stupenka', [StupenkaController::class, 'setStupenka']);
 });
 
-
+Route::get('/stupenki/{count?}', [StupenkaController::class, 'getStupenki']);
+Route::get('/getCountStupenki', [StupenkaController::class, 'getCount']);
+Route::get('/stupenka/{stupenka}', [StupenkaController::class, 'getStupenka']);

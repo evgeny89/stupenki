@@ -3,85 +3,38 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\StupenkaResource;
 use App\Models\Stupenka;
+use App\Traits\ApiResponser;
 use Illuminate\Http\Request;
+
 
 class StupenkaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    use ApiResponser;
+
+    public function getStupenka(Stupenka $stupenka)
     {
-        //
+        return response($stupenka);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function getCount()
     {
-        //
+        return Stupenka::all()->sum('count');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function getStupenki(int $count = null)
     {
-
+        return $count ? Stupenka::orderBy('id')->take($count) : Stupenka::all();
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return StupenkaResource
-     */
-    public function show($id)
+    public function setStupenka(Request $request)
     {
-        return new StupenkaResource(Stupenka::find($id));
-    }
+        $stupenka = new Stupenka();
+        $stupenka->user_id = auth()->id();
+        $stupenka->location = $request->input('location');
+        $stupenka->count = $request->input('count');
+        $stupenka->save();
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return $this->success($stupenka, 'запись сохранена', 201);
     }
 }
