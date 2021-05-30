@@ -1,18 +1,11 @@
 <template>
     <div>
-        <!-- <div class="header">
-            <h1>Stupenki.fun</h1>
-            <p>
-                <router-link :to="{ name: 'home' }">home</router-link>
-                <router-link :to="{ name: 'form' }">form</router-link>
-            </p>
-        </div> -->
-        <Header />
-
+        <Header ref="header"/>
         <div class="wrapper">
-            <router-view></router-view>
+            <router-view @changeToken="changeToken"></router-view>
         </div>
         <Footer />
+        <notifications position="top right" />
     </div>
 </template>
 
@@ -24,6 +17,11 @@ export default {
     name: "HomeLayout",
     components: {
         Header, Footer
+    },
+    methods: {
+        changeToken: function () {
+            this.$refs.header.changeToken();
+        }
     }
 }
 </script>

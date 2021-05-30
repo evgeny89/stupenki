@@ -4,6 +4,7 @@ import About from "./Components/About";
 import Search from "./Components/Search";
 import Register from "./Components/Register";
 import Auth from "./Components/Auth";
+import MePage from "./Components/MePage";
 
 export default [
     {
@@ -35,5 +36,10 @@ export default [
         path: '/auth',
         name: 'auth',
         component: Auth
+    },
+    {
+        path: '/me',
+        name: 'me',
+        component: MePage
     },
 ]

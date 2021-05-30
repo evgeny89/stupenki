@@ -9,15 +9,37 @@
             <p class="text__p text"> Расстояние от Земли до Луны составляет 384.467км. Построим лестницу до Луны из 1.922.335.000 ступеней.
             </p>
         </div>
-        <div>5</div>
+        <div class="home-count">
+            Всего <span class="home-count-number">{{ count }}</span> ступенек
+        </div>
         <div>Рейтинг</div>
     </div>
 </template>
 
 <script>
 
+import axios from "axios";
+
 export default {
-    name: "Home"
+    name: "Home",
+    data() {
+        return {
+            count: 0,
+        }
+    },
+    methods: {
+        getCount: function () {
+            axios({
+                method: 'GET',
+                url: 'api/getCountStupenki',
+            })
+                .then(response => response.data)
+                .then(data => this.count = data);
+        }
+    },
+    mounted() {
+        this.getCount();
+    }
 }
 </script>
 
