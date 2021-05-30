@@ -1,11 +1,15 @@
 <template>
     <div class="wrapper blocks">
         <div class="moon"> </div>
-        <div><h2 class="text">Построим лестницу до Луны!</h2></div>
+        <div>
+            <h2 class="text">Построим лестницу до Луны!</h2>
+            <VueCarousel />
+        </div>
         <div class="">
             <img class="stair" src="/images/stair.png" alt="Лестница">
         </div>
         <div>
+
             <p class="text__p text"> Расстояние от Земли до Луны составляет 384.467км. Построим лестницу до Луны из 1.922.335.000 ступеней.
             </p>
         </div>
@@ -17,7 +21,7 @@
 </template>
 
 <script>
-
+import VueCarousel from "./VueCarousel"
 import axios from "axios";
 
 export default {
@@ -39,6 +43,9 @@ export default {
     },
     mounted() {
         this.getCount();
+    },
+    components: {
+        VueCarousel
     }
 }
 </script>

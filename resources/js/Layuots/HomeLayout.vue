@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="app__wrapper">
         <Header ref="header"/>
         <div class="wrapper">
             <router-view @changeToken="changeToken"></router-view>

@@ -1,0 +1,30 @@
+.VueCarousel {
+    width: 960px;
+}
+.VueCarousel-slide {
+    height: 375px;
+    background-color: rosybrown;
+    padding: 5px;
+    display: flex;
+}
+.slide__img {
+    margin-right: 5px;
+    width: 510px;
+}
+
+.slide__info {
+    width: 250px;
+    padding: 5px;
+    position: relative;
+}
+.slide__title {
+    margin-bottom: 10px;
+}
+
+.slide__text {
+    margin-bottom: 10px;
+}
+.slide__number {
+    position: absolute;
+    bottom: 5px
+}
