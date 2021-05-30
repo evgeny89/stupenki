@@ -3,7 +3,9 @@
 @import "variable";
 @import "extendalbe";
 
+@import "pages/home";
 @import "pages/registration";
+@import "pages/me_page";
 
 body {
   font-family: 'Montserrat', sans-serif;
@@ -128,7 +130,7 @@ li {
 
 .footer_grey {
   height: 79px;
-  margin-top: 100px;
+  margin-top: 50px;
   display: flex;
   color: $color-orange;
 }
