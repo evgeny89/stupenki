@@ -15,7 +15,7 @@ class CreateStupenkiTable extends Migration
     {
         Schema::create('stupenki', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id')->nullable();
+            $table->bigInteger('user_id')->unsigned()->nullable();
             $table->integer('count')->nullable();
             $table->string('location')->nullable();
             $table->timestamps();

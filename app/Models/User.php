@@ -45,11 +45,6 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function get(Request $request)
-    {
-        return response(['password' => Hash::make($request->input('password'))]);
-    }
-
     #####################################################################
     # RELATIONS                                                         #
     #####################################################################

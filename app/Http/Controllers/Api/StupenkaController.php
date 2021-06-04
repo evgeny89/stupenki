@@ -30,8 +30,13 @@ class StupenkaController extends Controller
     public function setStupenka(Request $request)
     {
         $stupenka = new Stupenka();
+        $imageName = $stupenka->uploadImage($request->file('image'));
+        $stupenka->image = $imageName;
         $stupenka->user_id = auth()->id();
         $stupenka->location = $request->input('location');
+        $stupenka->country = $request->input('country');
+        $stupenka->city = $request->input('city');
+        $stupenka->name = $request->input('name');
         $stupenka->count = $request->input('count');
         $stupenka->save();
 

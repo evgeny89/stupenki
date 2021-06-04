@@ -2,9 +2,25 @@
     <div class="wrapper blocks">
         <form action="#" id="setStupenki">
             <div class="flex-between">
-                <label for="address" class="label">Адресс:</label>
+                <label for="location" class="label">Координаты:</label>
             </div>
-            <input type="text" id="address" name="location" class="input" v-model="address">
+            <input type="text" id="location" name="location" class="input" v-model="location">
+            <div class="flex-between">
+                <label for="country" class="label">Страна:</label>
+            </div>
+            <input type="text" id="country" name="country" class="input" v-model="country">
+            <div class="flex-between">
+                <label for="city" class="label">Город:</label>
+            </div>
+            <input type="text" id="city" name="city" class="input" v-model="city">
+            <div class="flex-between">
+                <label for="name" class="label">Наименование:</label>
+            </div>
+            <input type="text" id="name" name="name" class="input" v-model="name">
+            <div class="flex-between">
+                <label for="image" class="label">Фотография:</label>
+            </div>
+            <input type="file" id="image" name="image" class="input" @change="setImage($event)">
             <div class="flex-between">
                 <label for="count" class="label">Количество ступенек:</label>
             </div>
@@ -21,13 +37,17 @@ export default {
     name: "Form",
     data() {
         return {
-            address: null,
-            count: 0,
+            location: null,
+            country: null,
+            city: null,
+            name: null,
+            image: null,
+            count: null,
         }
     },
     computed: {
         disableBtn: function () {
-            return this.address && +this.count > 0;
+            return this.name && +this.count > 0;
         }
     },
     methods: {
@@ -35,6 +55,9 @@ export default {
             axios({
                 method: 'POST',
                 url: 'api/stupenka',
+                headers: {
+                    'Content-Type': 'multipart/form-data;boundary="boundary"',
+                },
                 data: new FormData(setStupenki),
             })
                 .then(response => response.data)
@@ -44,6 +67,9 @@ export default {
                         this.$router.push({ name: 'home' });
                     }
                 }).catch(e => console.log(e.message));
+        },
+        setImage: function (e) {
+            this.image = e.target.files[0].name;
         }
     }
 }
