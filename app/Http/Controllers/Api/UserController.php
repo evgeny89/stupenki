@@ -7,8 +7,14 @@ use App\Models\User;
 
 class UserController extends Controller
 {
+    public function getMe()
+    {
+
+        return response(User::with('stupenki')->find(auth()->user()->id));
+    }
+
    public function getUser(User $user)
    {
-       return response($user);
+       return response($user->with('stupenki'));
    }
 }

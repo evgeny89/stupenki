@@ -11,8 +11,15 @@
                 </p>
             </div>
         </aside>
-        <div>
+        <div v-if="stupenki">
             <p class="me-title">записи:</p>
+            <div class="user-post-list">
+                <div v-for="item in stupenki">
+                    <h3>{{ item.name }}</h3>
+                    <p>страна: {{ item.country }}, город: {{ item.city }}</p>
+                    <img :src="item['image_small']" :alt="item.name">
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -33,6 +40,9 @@ export default {
         },
         email: function () {
             return this.user?.email ?? '...';
+        },
+        stupenki: function () {
+            return this.user && this.user.stupenki ? this.user.stupenki : null;
         }
     },
     methods: {

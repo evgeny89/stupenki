@@ -7,7 +7,7 @@ php artisan down
 git reset --hard HEAD
 
 # Pull the latest changes from the git repository
-git pull origin
+git pull origin master
 
 # Install/update composer dependencies
 composer install --no-interaction --prefer-dist --optimize-autoloader --no-dev

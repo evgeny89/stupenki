@@ -20,13 +20,25 @@ use Illuminate\Support\Facades\Route;
 //Route::middleware('auth:api')->get('/user', function (Request $request) {
 //    return $request->user();
 //});
+/**
+ * роут для регистрации
+ * in: name, email, password
+ * out: status, message, data
+ */
 Route::post('/register', [AuthController::class, 'register']);
+
+/**
+ * роут для авторизации
+ * in: email, password
+ * out: status, message, data
+ */
 Route::post('/login', [AuthController::class, 'login']);
 
+/**
+ *  внутри группы доступ только авторизованным пользователям.
+ */
 Route::group(['middleware' => ['auth:sanctum']], function () {
-    Route::get('/me', function (Illuminate\Http\Request $request) {
-        return auth()->user();
-    });
+    Route::get('/me', [UserController::class, 'getMe']);
     Route::get('/user/{user}', [UserController::class, 'getUser']);
 
     Route::post('/logout', [AuthController::class, 'logout']);
