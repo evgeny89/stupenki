@@ -16,6 +16,11 @@
                 <p class="fail-hint" v-show="passFail">Данный пароль слишком короткий</p>
             </div>
             <input type="password" id="pass" name="password" class="input"  :class="{ 'fail-validation': passFail}" v-model="password">
+            <div class="flex-between">
+                <label for="pass-confirm" class="label">Password confirm:</label>
+                <p class="fail-hint" v-show="passConfirmFail">Пароли не совпадают</p>
+            </div>
+            <input type="password" id="pass-confirm" name="password_confirmation" class="input"  :class="{ 'fail-validation': passConfirmFail}" v-model="passwordConfirm">
             <p class="fail-hint info">Все поля обязательны для заполнения!</p>
             <button class="btn" :disabled="disableBtn" type="button" @click="registration">registration</button>
         </form>
@@ -31,6 +36,7 @@ export default {
         return {
             login: "",
             password: "",
+            passwordConfirm: "",
             email: "",
             checkEmail: new RegExp(/^((([0-9A-Za-z]{1}[-0-9A-z\.]{1,}[0-9A-Za-z]{1})|([0-9А-Яа-я]{1}[-0-9А-я\.]{1,}[0-9А-Яа-я]{1}))@([-A-Za-z]{1,}\.){1,2}[-A-Za-z]{2,})$/),
         }
@@ -42,11 +48,14 @@ export default {
         passFail: function () {
             return this.password.length > 0 && this.password.length < 6;
         },
+        passConfirmFail: function () {
+            return this.passwordConfirm.length > 0 && this.passwordConfirm !== this.password;
+        },
         emailFail: function () {
             return this.email === '' || this.checkEmail.test(this.email);
         },
         disableBtn: function () {
-            return this.login.length < 3 || this.password.length < 6 || !this.emailFail;
+            return this.login.length < 3 || this.password.length < 6 || !this.emailFail || this.passConfirmFail || this.passwordConfirm.length === 0;
         }
     },
     methods: {
@@ -61,14 +70,28 @@ export default {
                     if (data.status === 'Success') {
                         let token = data.data.token.split('|')[1];
                         localStorage.setItem('token', token);
-                        this.$notify(data.message);
+                        this.showNotify(data.message, 'успех');
                         this.changeToken();
                         this.$router.push({ name: 'home' });
                     }
-                }).catch(e => console.log(e));
+                })
+                .catch(e => this.handleErrors(e.response.data.errors));
         },
         changeToken: function () {
             this.$emit('changeToken');
+        },
+        showNotify: function (message, title, type = 'success') {
+            this.$notify({
+                title: title,
+                text: message,
+                type: type,
+            });
+            //type: success, warn, error
+        },
+        handleErrors: function (errors) {
+            for (let field in errors) {
+                errors[field].forEach(text => this.showNotify(text, field, 'error'))
+            }
         }
     }
 }

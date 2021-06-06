@@ -51,14 +51,34 @@ export default {
                     if (data.status === 'Success') {
                         let token = data.data.token.split('|')[1];
                         localStorage.setItem('token', token);
-                        this.$notify(data.message);
+                        this.showNotify(data.message, 'вход');
                         this.changeToken();
                         this.$router.push({ name: 'home' });
                     }
-                }).catch(e => console.log(e.message));
+                })
+                .catch(e => {
+                    if (e.response.data.status === 'Error') {
+                        this.showNotify(e.response.data.message, 'error', 'error');
+                    } else {
+                        this.handleErrors(e.response.data.errors)
+                    }
+                });
         },
         changeToken: function () {
             this.$emit('changeToken');
+        },
+        showNotify: function (message, title, type = 'success') {
+            this.$notify({
+                title: title,
+                text: message,
+                type: type,
+            });
+            //type: success, warn, error
+        },
+        handleErrors: function (errors) {
+            for (let field in errors) {
+                errors[field].forEach(text => this.showNotify(text, field, 'error'))
+            }
         }
     }
 }
