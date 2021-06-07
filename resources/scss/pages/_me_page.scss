@@ -20,3 +20,17 @@
     color: $color-white;
 }
 
+.image-small-size:hover + .image-full-size {
+    opacity: 1;
+    transform: translateX(0%);
+}
+
+.image-full-size {
+    position: absolute;
+    max-width: 600px;
+    left: 1%;
+    top: 20%;
+    transform: translateX(-100%);
+    opacity: 0;
+    transition: .3s opacity, .3s transform;
+}
