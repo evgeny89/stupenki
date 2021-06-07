@@ -16,8 +16,18 @@
             <div class="user-post-list">
                 <div v-for="item in stupenki">
                     <h3>{{ item.name }}</h3>
-                    <p>страна: {{ item.country }}, город: {{ item.city }}</p>
-                    <img :src="item['image_small']" :alt="item.name">
+                    <p>страна: {{ item.country.name }}, город: {{ item.city.name }}</p>
+                    <p>количество ступенек: {{ item.count }}</p>
+                    <div>
+                        <img :src="item['image_small']"
+                             :alt="item.name"
+                             class="image-small-size"
+                        >
+                        <img :src="item['image_origin']"
+                             :alt="item.name + 'origin'"
+                             class="image-full-size"
+                        >
+                    </div>
                 </div>
             </div>
         </div>
@@ -32,6 +42,7 @@ export default {
     data() {
         return {
             user: null,
+            showImage: false,
         }
     },
     computed: {
