@@ -26,6 +26,8 @@ class Stupenka extends Model
 
     protected $appends = ['image_small', 'image_origin'];
 
+    protected $with = ['city:name,id', 'country:name,id'];
+
     protected $upload = [
         'origin' => null,
         'small' => '336x280',
@@ -48,6 +50,16 @@ class Stupenka extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function city()
+    {
+        return $this->belongsTo(City::class);
+    }
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
     }
 
     #####################################################################

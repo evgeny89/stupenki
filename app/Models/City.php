@@ -12,4 +12,13 @@ class City extends Model
     protected $fillable = [
         'name',
     ];
+
+    #####################################################################
+    # RELATIONS                                                         #
+    #####################################################################
+
+    public function stupenki()
+    {
+        return $this->hasMany(Stupenka::class);
+    }
 }
