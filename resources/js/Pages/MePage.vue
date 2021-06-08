@@ -14,11 +14,12 @@
         <div v-if="stupenki">
             <p class="me-title">записи:</p>
             <div class="user-post-list">
-                <div v-for="item in stupenki">
-                    <h3>{{ item.name }}</h3>
+                <div v-for="item in stupenki" :key="item.id" class="user-post">
+                    <h3 class="post-title">{{ item.name }}</h3>
                     <p>страна: {{ item.country.name }}, город: {{ item.city.name }}</p>
                     <p>количество ступенек: {{ item.count }}</p>
-                    <div>
+                    <p>добавлено: {{ item['created_at'] }}г.</p>
+                    <div class="image-block">
                         <img :src="item['image_small']"
                              :alt="item.name"
                              class="image-small-size"
@@ -61,9 +62,17 @@ export default {
             axios({
                 method: 'GET',
                 url: 'api/me',
-            }).then(data => {
-                this.user = data.data;
-            });
+            })
+                .then(data => {
+                    this.user = data.data;
+                })
+                .catch(e => {
+                    if (Array.isArray(e.response.data)) {
+                        this.$emit('handleErrors', e.response.data.errors);
+                    } else {
+                        this.$emit('showNotify', e.response.data.message, 'Ошибка', 'error');
+                    }
+                });
         }
     },
     mounted() {

@@ -70,8 +70,14 @@ export default {
             }).then(data => {
                 localStorage.removeItem('token');
                 this.userToken = null;
-                this.$notify(data.data.message);
-                this.$router.push({ name: 'home' });
+                this.$notify({
+                    title: 'Выход',
+                    text: data.data.message,
+                    type: 'success',
+                });
+                if (this.$route.name !== 'home') {
+                    this.$router.push({ name: 'home' });
+                }
             });
         },
         changeToken: function () {
