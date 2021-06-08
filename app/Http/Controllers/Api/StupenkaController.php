@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\SetStupenkaRequest;
+use App\Models\City;
+use App\Models\Country;
 use App\Models\Stupenka;
 use App\Traits\ApiResponser;
 use Illuminate\Http\Request;
@@ -27,15 +30,17 @@ class StupenkaController extends Controller
         return $count ? Stupenka::orderBy('id')->take($count) : Stupenka::all();
     }
 
-    public function setStupenka(Request $request)
+    public function setStupenka(SetStupenkaRequest $request)
     {
+        $country = Country::firstOrCreate(['name' => $request->input('country')]);
+        $city = City::firstOrCreate(['name' => $request->input('city')]);
+
         $stupenka = new Stupenka();
         $imageName = $stupenka->uploadImage($request->file('image'));
         $stupenka->image = $imageName;
         $stupenka->user_id = auth()->id();
-        $stupenka->location = $request->input('location');
-        $stupenka->country = $request->input('country');
-        $stupenka->city = $request->input('city');
+        $stupenka->country_id = $country->id;
+        $stupenka->city_id = $city->id;
         $stupenka->name = $request->input('name');
         $stupenka->count = $request->input('count');
         $stupenka->save();
