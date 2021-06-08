@@ -9,7 +9,6 @@ class UserController extends Controller
 {
     public function getMe()
     {
-
         return response(User::with('stupenki')->find(auth()->user()->id));
     }
 
