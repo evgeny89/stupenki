@@ -13,6 +13,8 @@ class City extends Model
         'name',
     ];
 
+    protected $appends = ['type'];
+
     #####################################################################
     # RELATIONS                                                         #
     #####################################################################
@@ -20,5 +22,14 @@ class City extends Model
     public function stupenki()
     {
         return $this->hasMany(Stupenka::class);
+    }
+
+    #####################################################################
+    # ACCESSORS                                                         #
+    #####################################################################
+
+    public function getTypeAttribute()
+    {
+        return 'city';
     }
 }
