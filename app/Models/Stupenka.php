@@ -16,7 +16,6 @@ class Stupenka extends Model
 
     protected $fillable = [
         'count',
-        'location',
         'user_id',
         'image',
         'country',
@@ -33,6 +32,11 @@ class Stupenka extends Model
         'small' => '336x280',
         'optimal' => '640x480',
         'high' => '1024x768',
+    ];
+
+    protected $casts = [
+        'created_at' => 'datetime:d.m.Y',
+        'updated_at' => 'datetime:d.m.Y',
     ];
 
     protected $rootPathUpload = 'stupenki';
