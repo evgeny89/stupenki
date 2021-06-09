@@ -56,7 +56,13 @@
             <div class="flex-between">
                 <label for="image" class="label">Фотография:</label>
             </div>
-            <input type="file" id="image" name="image" class="input" @change="setImage($event)">
+            <div class="image-label" :class="{'image-label_set': image}" @click="openFileDialog">
+                <span>{{ getImage }}</span>
+                <button class="btn-delete" type="button" @click.stop="clearImage" v-if="image">
+                    <i class="far fa-trash-alt"></i>
+                </button>
+            </div>
+            <input type="file" ref="image-input" id="image" name="image" class="file-input" @change="setImage">
             <div class="flex-between">
                 <label for="count" class="label">Количество ступенек:</label>
             </div>
@@ -95,6 +101,9 @@ export default {
         cityName: function () {
             return this.city ? this.city.name : '';
         },
+        getImage: function () {
+            return this.image ? this.image : 'Выбрать фото';
+        },
     },
     methods: {
         send: function () {
@@ -121,8 +130,15 @@ export default {
                     }
                 });
         },
-        setImage: function (e) {
-            this.image = e.target.files[0].name;
+        openFileDialog: function () {
+            this.$refs["image-input"].click();
+        },
+        setImage: function () {
+            this.image = this.$refs["image-input"].files[0]?.name ?? null;
+        },
+        clearImage: function () {
+            this.$refs["image-input"].value = '';
+            this.image = null;
         },
         asyncFindCountry: function (search) {
             if (search.length < 3) {
