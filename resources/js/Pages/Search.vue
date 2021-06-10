@@ -26,22 +26,7 @@
             </vue-multiselect>
         </div>
         <div class="user-post-list">
-            <div v-for="item in stupenki" :key="item.id" class="user-post">
-                <h3 class="post-title">{{ item.name }}</h3>
-                <p>страна: {{ item.country.name }}, город: {{ item.city.name }}</p>
-                <p>количество ступенек: {{ item.count }}</p>
-                <p>добавлено: {{ item['created_at'] }}г.</p>
-                <div class="image-block">
-                    <img :src="item['image_small']"
-                         :alt="item.name"
-                         class="image-small-size"
-                    >
-                    <img :src="item['image_origin']"
-                         :alt="item.name + 'origin'"
-                         class="image-full-size"
-                    >
-                </div>
-            </div>
+            <post v-for="item in stupenki" :key="item.id" :post="item" class="user-post"></post>
         </div>
     </div>
 </template>
@@ -49,10 +34,11 @@
 <script>
 import axios from "axios";
 import Multiselect from "vue-multiselect";
+import Post from "../Components/Post";
 
 export default {
     name: "Search",
-    components: {'vue-multiselect': Multiselect},
+    components: {'vue-multiselect': Multiselect, Post},
     data() {
         return {
             searchResult: [],
