@@ -53,8 +53,8 @@ export default {
                     if (data.status === 'Success') {
                         let token = data.data.token.split('|')[1];
                         localStorage.setItem('token', token);
+                        this.$root.replaceToken();
                         this.$emit('showNotify', data.message, 'успех');
-                        this.changeToken();
                         this.$router.push({name: 'home'});
                     }
                 })
@@ -65,9 +65,6 @@ export default {
                         this.$emit('showNotify', e.response.data.message, 'Ошибка', 'error');
                     }
                 });
-        },
-        changeToken: function () {
-            this.$emit('changeToken');
         },
     }
 }

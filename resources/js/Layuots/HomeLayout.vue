@@ -1,8 +1,8 @@
 <template>
     <div>
-        <Header ref="header"/>
+        <Header/>
         <div class="wrapper">
-            <router-view @changeToken="changeToken" @showNotify="showNotify" @handleErrors="handleErrors"></router-view>
+            <router-view @showNotify="showNotify" @handleErrors="handleErrors"></router-view>
         </div>
         <Footer />
         <notifications position="top right" />
@@ -19,9 +19,6 @@ export default {
         Header, Footer
     },
     methods: {
-        changeToken: function () {
-            this.$refs.header.changeToken();
-        },
         showNotify: function (message, title, type = 'success') {
             this.$notify({
                 title: title,

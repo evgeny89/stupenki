@@ -70,15 +70,12 @@ export default {
                     if (data.status === 'Success') {
                         let token = data.data.token.split('|')[1];
                         localStorage.setItem('token', token);
+                        this.$root.replaceToken();
                         this.$emit('showNotify', data.message, 'успех');
-                        this.changeToken();
                         this.$router.push({ name: 'home' });
                     }
                 })
                 .catch(e => this.$emit('handleErrors', e.response.data.errors));
-        },
-        changeToken: function () {
-            this.$emit('changeToken');
         },
     }
 }
