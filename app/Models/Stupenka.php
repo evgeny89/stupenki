@@ -27,6 +27,8 @@ class Stupenka extends Model
 
     protected $with = ['city:name,id', 'country:name,id'];
 
+    protected $withCount = ['comments'];
+
     protected $upload = [
         'origin' => null,
         'small' => '336x280',
@@ -64,6 +66,11 @@ class Stupenka extends Model
     public function country()
     {
         return $this->belongsTo(Country::class);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comments::class, 'post_id');
     }
 
     #####################################################################
