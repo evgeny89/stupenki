@@ -25,8 +25,12 @@
 }
 
 .user-post {
+    max-width: 280px;
+    max-height: 390px;
     padding: 5px;
     box-shadow: 0 5px 10px 2px rgba(24, 40, 72, 0.2);
+    display: flex;
+    flex-direction: column;
 }
 
 .post-title {
@@ -35,11 +39,16 @@
 
 .image-block {
     margin-top: 20px;
+    flex-grow: 1;
 }
 
-.image-small-size:hover + .image-full-size {
-    opacity: 1;
-    transform: translateX(0%);
+.image-small-size {
+    max-width: 100%;
+
+    &:hover + .image-full-size {
+        opacity: 1;
+        transform: translateX(0%);
+    }
 }
 
 .image-full-size {
@@ -50,4 +59,8 @@
     transform: translateX(-100%);
     opacity: 0;
     transition: .3s opacity, .3s transform;
+}
+
+.post-comments_link {
+    margin: 10px 0;
 }
