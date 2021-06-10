@@ -1,0 +1,43 @@
+.prev {
+    background-color: transparent;
+    border: 1px solid $color-white;
+    border-radius: 50%;
+    outline: none;
+    font-size: 20px;
+    color: $color-white;
+    cursor: pointer;
+    padding: 5px;
+    height: 35px;
+    width: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: .3s color, .3s border-color;
+
+    &:hover {
+        color: $moon-chess;
+        border-color: $moon-chess;
+    }
+}
+
+.post-page-info {
+    padding: 10px;
+    color: $color-white;
+
+    .post-page-title {
+        margin-top: 30px;
+        font-size: 22px;
+        font-weight: 500;
+    }
+
+    p {
+        margin: 10px 0;
+    }
+}
+
+.post-page-photo {
+
+    img {
+        max-width: 100%;
+    }
+}

@@ -5,6 +5,7 @@ import Search from "./Pages/Search";
 import Register from "./Pages/Register";
 import Auth from "./Pages/Auth";
 import MePage from "./Pages/MePage";
+import Post from "./Pages/Post";
 
 export default [
     {
@@ -41,5 +42,10 @@ export default [
         path: '/me',
         name: 'me',
         component: MePage
+    },
+    {
+        path: '/post/:id',
+        name: 'post',
+        component: Post
     },
 ]
