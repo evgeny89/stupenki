@@ -65,7 +65,7 @@ export default {
         logout: function () {
             axios({
                 method: 'POST',
-                url: 'api/logout',
+                url: '/api/logout',
             }).then(data => {
                 localStorage.removeItem('token');
                 this.$root.replaceToken();
