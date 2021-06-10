@@ -17,7 +17,7 @@ class StupenkaController extends Controller
 
     public function getStupenka(Stupenka $stupenka)
     {
-        return response($stupenka);
+        return  $this->success($stupenka->load('comments', 'user'));
     }
 
     public function getCount()
