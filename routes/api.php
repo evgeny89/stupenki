@@ -2,6 +2,7 @@
 
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\CommentController;
 use App\Http\Controllers\Api\SearchController;
 use App\Http\Controllers\Api\StupenkaController;
 use App\Http\Controllers\Api\UserController;
@@ -47,6 +48,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/search_country', [SearchController::class, 'searchCountryAutocomplete']);
     Route::get('/search_city', [SearchController::class, 'searchCityAutocomplete']);
     Route::post('/stupenka', [StupenkaController::class, 'setStupenka']);
+    Route::post('/comment', [CommentController::class, 'setComment']);
 });
 
 Route::get('/stupenki/{count?}', [StupenkaController::class, 'getStupenki']);
