@@ -28,4 +28,9 @@ class Comments extends Model
     {
         return $this->belongsTo(Stupenka::class);
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
