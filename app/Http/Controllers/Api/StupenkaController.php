@@ -17,7 +17,7 @@ class StupenkaController extends Controller
 
     public function getStupenka(Stupenka $stupenka)
     {
-        return  $this->success($stupenka->load('comments', 'user'));
+        return  $this->success($stupenka->load('comments.user', 'user'));
     }
 
     public function getCount()
@@ -27,7 +27,7 @@ class StupenkaController extends Controller
 
     public function getStupenki(int $count = null)
     {
-        return $count ? Stupenka::orderBy('id')->take($count) : Stupenka::all();
+        return $count ? Stupenka::inRandomOrder()->take($count) : Stupenka::all();
     }
 
     public function setStupenka(SetStupenkaRequest $request)
