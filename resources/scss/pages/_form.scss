@@ -1,6 +1,8 @@
 .form-add-post {
     grid-row-start: 1;
     grid-row-end: 3;
+    grid-column: 2;
+    max-width: 400px;
 }
 
 .input-multiselect {
