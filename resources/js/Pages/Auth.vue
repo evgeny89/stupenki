@@ -1,6 +1,6 @@
 <template>
     <div class="wrapper blocks">
-        <form action="#" id="loginData">
+        <form action="#" id="loginData" class="form-registration">
             <div class="flex-between">
                 <label for="email" class="label">E-mail:</label>
                 <p class="fail-hint" v-show="!emailFail">Данный email не соответствует шаблону</p>

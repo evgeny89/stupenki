@@ -14,7 +14,7 @@
                      class="image-full-size"
                 >
             </div>
-            <p v-if="$root.userToken" class="post-comments_link">Комментариев: {{ post['comments_count'] }}</p>
+            <p class="post-comments_link">Комментариев: {{ post['comments_count'] }}</p>
     </router-link>
 </template>
 

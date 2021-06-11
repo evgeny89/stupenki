@@ -1,6 +1,6 @@
 <template>
     <div class="wrapper blocks">
-        <form action="#" id="registration">
+        <form action="#" id="registration" class="form-registration">
             <div class="flex-between">
                <label for="login" class="label">Name:</label>
                <p class="fail-hint" v-show="loginFail">Имя слишком короткое</p>
