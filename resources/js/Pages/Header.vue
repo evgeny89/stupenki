@@ -9,7 +9,7 @@
                     exact
                 >{{ route.name }}</router-link>
             </nav>
-            <router-link class="btn-login" v-if="!userToken" :to="{name: 'auth'}">Вход</router-link>
+            <router-link class="btn-login" v-if="!$root.userToken" :to="{name: 'auth'}">Вход</router-link>
             <button class="btn-login" v-else @click="logout">Выход</button>
         </div>
     </header>
@@ -22,7 +22,6 @@ export default {
     name: "Header",
     data() {
         return {
-            userToken: null,
             routes: [
                 {
                     url: 'home',
@@ -59,27 +58,27 @@ export default {
     },
     computed: {
         routeList: function () {
-            return this.userToken?.length ? this.routes.filter(i => i.auth !== false) : this.routes.filter(i => i.auth !== true);
+            return this.$root.userToken ? this.routes.filter(i => i.auth !== false) : this.routes.filter(i => i.auth !== true);
         }
     },
     methods: {
         logout: function () {
             axios({
                 method: 'POST',
-                url: 'api/logout',
+                url: '/api/logout',
             }).then(data => {
                 localStorage.removeItem('token');
-                this.userToken = null;
-                this.$notify(data.data.message);
-                this.$router.push({ name: 'home' });
+                this.$root.replaceToken();
+                this.$notify({
+                    title: 'Выход',
+                    text: data.data.message,
+                    type: 'success',
+                });
+                if (this.$route.name !== 'home') {
+                    this.$router.push({ name: 'home' });
+                }
             });
         },
-        changeToken: function () {
-            this.userToken = localStorage.getItem('token');
-        }
     },
-    mounted() {
-        this.changeToken();
-    }
 }
 </script>

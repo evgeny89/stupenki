@@ -1,0 +1,100 @@
+.prev {
+    background-color: transparent;
+    border: 1px solid $color-white;
+    border-radius: 50%;
+    outline: none;
+    font-size: 20px;
+    color: $color-white;
+    cursor: pointer;
+    padding: 5px;
+    height: 35px;
+    width: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: .3s color, .3s border-color;
+
+    &:hover {
+        color: $moon-chess;
+        border-color: $moon-chess;
+    }
+}
+
+.post-page-info {
+    padding: 10px;
+    color: $color-white;
+    grid-row-start: 1;
+    grid-column: 1;
+    grid-row-end: 2;
+
+    .post-page-title {
+        margin-top: 30px;
+        font-size: 22px;
+        font-weight: 500;
+    }
+
+    p {
+        margin: 10px 0;
+    }
+}
+
+.post-page-comments {
+    grid-row-start: 2;
+    grid-column: 1;
+    grid-row-end: 3;
+
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-end;
+        margin-top: -40px;
+        margin-bottom: 20px;
+
+        textarea {
+            border-radius: 10px;
+            padding: 10px;
+            width: 100%;
+            border: none;
+            outline: none;
+        }
+
+        .btn {
+            margin: initial;
+        }
+    }
+
+    .comment {
+        box-shadow: 0 5px 10px 2px rgba(24, 40, 72, 0.2);
+        padding: 5px;
+        margin-bottom: 20px;
+
+        .comment-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: $moon-chess;
+
+            p:first-child {
+                font-size: 18px;
+                font-weight: 700;
+            }
+        }
+
+        .comment-text {
+            margin-top: 10px;
+            padding: 5px;
+            color: $color-white;
+        }
+    }
+}
+
+.post-page-photo {
+    grid-row-start: 1;
+    grid-column: 2;
+    grid-row-end: 3;
+
+    img {
+        max-width: 100%;
+    }
+}

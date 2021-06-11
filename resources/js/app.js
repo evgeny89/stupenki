@@ -31,5 +31,18 @@ import HomeLayout from './Layuots/HomeLayout.vue';
 new Vue({
     router,
     el: '#app',
-    components: {HomeLayout}
+    components: {HomeLayout},
+    data: function () {
+        return {
+            userToken: null,
+        }
+    },
+    methods: {
+        replaceToken: function () {
+            this.userToken = localStorage.getItem('token');
+        }
+    },
+    mounted() {
+        this.replaceToken();
+    }
 });

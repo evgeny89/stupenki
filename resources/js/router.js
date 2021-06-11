@@ -1,10 +1,11 @@
-import Home from "./Components/Home";
-import Form from "./Components/Form";
-import About from "./Components/About";
-import Search from "./Components/Search";
-import Register from "./Components/Register";
-import Auth from "./Components/Auth";
-import MePage from "./Components/MePage";
+import Home from "./Pages/Home";
+import Form from "./Pages/Form";
+import About from "./Pages/About";
+import Search from "./Pages/Search";
+import Register from "./Pages/Register";
+import Auth from "./Pages/Auth";
+import MePage from "./Pages/MePage";
+import Post from "./Pages/Post";
 
 export default [
     {
@@ -41,5 +42,10 @@ export default [
         path: '/me',
         name: 'me',
         component: MePage
+    },
+    {
+        path: '/post/:id',
+        name: 'post',
+        component: Post
     },
 ]

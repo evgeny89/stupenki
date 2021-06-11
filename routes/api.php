@@ -2,6 +2,8 @@
 
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\CommentController;
+use App\Http\Controllers\Api\SearchController;
 use App\Http\Controllers\Api\StupenkaController;
 use App\Http\Controllers\Api\UserController;
 use Illuminate\Support\Facades\Route;
@@ -42,9 +44,15 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/user/{user}', [UserController::class, 'getUser']);
 
     Route::post('/logout', [AuthController::class, 'logout']);
+
+    Route::get('/search_country', [SearchController::class, 'searchCountryAutocomplete']);
+    Route::get('/search_city', [SearchController::class, 'searchCityAutocomplete']);
     Route::post('/stupenka', [StupenkaController::class, 'setStupenka']);
+    Route::post('/comment', [CommentController::class, 'setComment']);
 });
 
 Route::get('/stupenki/{count?}', [StupenkaController::class, 'getStupenki']);
 Route::get('/getCountStupenki', [StupenkaController::class, 'getCount']);
 Route::get('/stupenka/{stupenka}', [StupenkaController::class, 'getStupenka']);
+Route::get('/search', [SearchController::class, 'searchAllAutocomplete']);
+Route::get('/get_by_search', [SearchController::class, 'getStupenkiToSearchString']);

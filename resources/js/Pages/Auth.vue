@@ -1,16 +1,18 @@
 <template>
     <div class="wrapper blocks">
-        <form action="#" id="loginData">
+        <form action="#" id="loginData" class="form-registration">
             <div class="flex-between">
                 <label for="email" class="label">E-mail:</label>
                 <p class="fail-hint" v-show="!emailFail">Данный email не соответствует шаблону</p>
             </div>
-            <input type="text" id="email" name="email" class="input" :class="{ 'fail-validation': !emailFail}" v-model="email">
+            <input type="text" id="email" name="email" class="input" :class="{ 'fail-validation': !emailFail}"
+                   v-model="email">
             <div class="flex-between">
                 <label for="pass" class="label">Password:</label>
                 <p class="fail-hint" v-show="passFail">Данный пароль слишком короткий</p>
             </div>
-            <input type="password" id="pass" name="password" class="input"  :class="{ 'fail-validation': passFail}" v-model="password">
+            <input type="password" id="pass" name="password" class="input" :class="{ 'fail-validation': passFail}"
+                   v-model="password">
             <button class="btn" :disabled="disableBtn" type="button" @click="login">login</button>
         </form>
     </div>
@@ -51,35 +53,19 @@ export default {
                     if (data.status === 'Success') {
                         let token = data.data.token.split('|')[1];
                         localStorage.setItem('token', token);
-                        this.showNotify(data.message, 'вход');
-                        this.changeToken();
-                        this.$router.push({ name: 'home' });
+                        this.$root.replaceToken();
+                        this.$emit('showNotify', data.message, 'успех');
+                        this.$router.push({name: 'home'});
                     }
                 })
                 .catch(e => {
-                    if (e.response.data.status === 'Error') {
-                        this.showNotify(e.response.data.message, 'error', 'error');
+                    if (Array.isArray(e.response.data)) {
+                        this.$emit('handleErrors', e.response.data.errors);
                     } else {
-                        this.handleErrors(e.response.data.errors)
+                        this.$emit('showNotify', e.response.data.message, 'Ошибка', 'error');
                     }
                 });
         },
-        changeToken: function () {
-            this.$emit('changeToken');
-        },
-        showNotify: function (message, title, type = 'success') {
-            this.$notify({
-                title: title,
-                text: message,
-                type: type,
-            });
-            //type: success, warn, error
-        },
-        handleErrors: function (errors) {
-            for (let field in errors) {
-                errors[field].forEach(text => this.showNotify(text, field, 'error'))
-            }
-        }
     }
 }
 </script>

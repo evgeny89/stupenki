@@ -1,0 +1,51 @@
+.form-add-post {
+    grid-row-start: 1;
+    grid-row-end: 3;
+    grid-column: 2;
+    max-width: 400px;
+}
+
+.input-multiselect {
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.image-label {
+    @extend %input;
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid $color-white;
+    color: $moon-chess;
+    cursor: pointer;
+    transition: .5s border-color;
+
+    span {
+        overflow: hidden;
+        padding-right: 15px;
+        text-overflow: ellipsis;
+    }
+}
+
+.image-label_set {
+    border: 1px solid $moon-chess;
+}
+
+.file-input {
+    display: none;
+}
+
+.btn-delete {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+
+    .far {
+        color: $moon-chess;
+        transition: .3s color;
+
+        &:hover {
+            color: $color-orange;
+        }
+    }
+}

@@ -16,7 +16,6 @@ class Stupenka extends Model
 
     protected $fillable = [
         'count',
-        'location',
         'user_id',
         'image',
         'country',
@@ -26,11 +25,20 @@ class Stupenka extends Model
 
     protected $appends = ['image_small', 'image_origin'];
 
+    protected $with = ['city:name,id', 'country:name,id'];
+
+    protected $withCount = ['comments'];
+
     protected $upload = [
         'origin' => null,
         'small' => '336x280',
         'optimal' => '640x480',
         'high' => '1024x768',
+    ];
+
+    protected $casts = [
+        'created_at' => 'datetime:d.m.Y',
+        'updated_at' => 'datetime:d.m.Y',
     ];
 
     protected $rootPathUpload = 'stupenki';
@@ -48,6 +56,21 @@ class Stupenka extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function city()
+    {
+        return $this->belongsTo(City::class);
+    }
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comments::class, 'post_id');
     }
 
     #####################################################################

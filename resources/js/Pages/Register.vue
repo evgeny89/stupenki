@@ -1,6 +1,6 @@
 <template>
     <div class="wrapper blocks">
-        <form action="#" id="registration">
+        <form action="#" id="registration" class="form-registration">
             <div class="flex-between">
                <label for="login" class="label">Name:</label>
                <p class="fail-hint" v-show="loginFail">Имя слишком короткое</p>
@@ -70,29 +70,13 @@ export default {
                     if (data.status === 'Success') {
                         let token = data.data.token.split('|')[1];
                         localStorage.setItem('token', token);
-                        this.showNotify(data.message, 'успех');
-                        this.changeToken();
+                        this.$root.replaceToken();
+                        this.$emit('showNotify', data.message, 'успех');
                         this.$router.push({ name: 'home' });
                     }
                 })
-                .catch(e => this.handleErrors(e.response.data.errors));
+                .catch(e => this.$emit('handleErrors', e.response.data.errors));
         },
-        changeToken: function () {
-            this.$emit('changeToken');
-        },
-        showNotify: function (message, title, type = 'success') {
-            this.$notify({
-                title: title,
-                text: message,
-                type: type,
-            });
-            //type: success, warn, error
-        },
-        handleErrors: function (errors) {
-            for (let field in errors) {
-                errors[field].forEach(text => this.showNotify(text, field, 'error'))
-            }
-        }
     }
 }
 </script>

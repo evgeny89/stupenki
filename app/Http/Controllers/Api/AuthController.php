@@ -45,8 +45,6 @@ class AuthController extends Controller
     {
         auth()->user()->tokens()->delete();
 
-        return [
-            'message' => 'выход выполнен'
-        ];
+        return $this->success(null, 'выход выполнен');
     }
 }
