@@ -8,8 +8,6 @@ use App\Models\City;
 use App\Models\Country;
 use App\Models\Stupenka;
 use App\Traits\ApiResponser;
-use Illuminate\Http\Request;
-
 
 class StupenkaController extends Controller
 {
@@ -27,7 +25,11 @@ class StupenkaController extends Controller
 
     public function getStupenki(int $count = null)
     {
-        return $count ? Stupenka::inRandomOrder()->take($count) : Stupenka::all();
+        $result = $count
+            ? Stupenka::select('id', 'name', 'image', 'city_id', 'country_id')->inRandomOrder()->limit($count)->get()
+            : Stupenka::select('id', 'name', 'image', 'city_id', 'country_id')->all();
+
+        return $this->success($result);
     }
 
     public function setStupenka(SetStupenkaRequest $request)

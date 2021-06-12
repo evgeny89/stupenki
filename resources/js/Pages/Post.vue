@@ -99,6 +99,7 @@ export default {
                 .then(data => {
                     if (data.status === 'Success') {
                         this.$notify(data.message);
+                        this.commentText = '';
                         this.getPost();
                     }
                 })

@@ -23,7 +23,7 @@ class Stupenka extends Model
         'name',
     ];
 
-    protected $appends = ['image_small', 'image_origin'];
+    protected $appends = ['image_small', 'image_origin', 'image_high'];
 
     protected $with = ['city:name,id', 'country:name,id'];
 

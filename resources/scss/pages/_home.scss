@@ -8,3 +8,33 @@
     font-size: 24px;
     color: $moon-chess;
 }
+
+.slider-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 500px;
+    position: relative;
+
+    img {
+        max-height: 100%;
+    }
+}
+
+.home-item-link {
+    color: $moon-chess;
+    position: absolute;
+    bottom: 20px;
+    left: 40px;
+    transition: .3s transform;
+
+    &:hover {
+        transform: scale(1.05);
+    }
+}
+
+.home-description {
+    display: flex;
+    align-items: flex-end;
+}
